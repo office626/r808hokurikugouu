@@ -3,38 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>公式ページの更新履歴 | CTZC 千葉豪雨ポータル</title>
+  <title>公式ページの更新履歴 | CTZC 北陸豪雨ポータル</title>
   <link rel="stylesheet" href="../css/style.css">
   <meta name="description" content="市町村公式の大雨情報・罹災証明・災害ごみなどのページが更新されたことを自動で検知し、日付ごとに一覧します。何が変わったかは公式ページで確認してください。市町村名で絞り込めます。">
   <meta name="theme-color" content="#0b5cab">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-  <link rel="canonical" href="https://office626.github.io/r808chibagouu/resident/updates.html">
-  <link rel="alternate" hreflang="ja" href="https://office626.github.io/r808chibagouu/resident/updates.html">
-  <link rel="alternate" hreflang="en" href="https://office626.github.io/r808chibagouu/en/resident/updates.html">
-  <link rel="alternate" hreflang="x-default" href="https://office626.github.io/r808chibagouu/resident/updates.html">
+  <link rel="canonical" href="https://office626.github.io/r808hokurikugouu/resident/updates.html">
+  <link rel="alternate" hreflang="ja" href="https://office626.github.io/r808hokurikugouu/resident/updates.html">
+  <link rel="alternate" hreflang="en" href="https://office626.github.io/r808hokurikugouu/en/resident/updates.html">
+  <link rel="alternate" hreflang="x-default" href="https://office626.github.io/r808hokurikugouu/resident/updates.html">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CTZC 千葉豪雨ポータル">
+  <meta property="og:site_name" content="CTZC 北陸豪雨ポータル">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:title" content="公式ページの更新履歴 | CTZC 千葉豪雨ポータル">
+  <meta property="og:title" content="公式ページの更新履歴 | CTZC 北陸豪雨ポータル">
   <meta property="og:description" content="市町村公式の大雨情報・罹災証明・災害ごみなどのページが更新されたことを自動で検知し、日付ごとに一覧します。">
-  <meta property="og:url" content="https://office626.github.io/r808chibagouu/resident/updates.html">
-  <meta property="og:image" content="https://office626.github.io/r808chibagouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="令和8年8月千葉豪雨からの復旧のために。主催 CivicTechZenChiba">
+  <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/resident/updates.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="公式ページの更新履歴 | CTZC 千葉豪雨ポータル">
+  <meta name="twitter:title" content="公式ページの更新履歴 | CTZC 北陸豪雨ポータル">
   <meta name="twitter:description" content="市町村公式ページの更新を自動検知して日付ごとに一覧します。">
-  <meta name="twitter:image" content="https://office626.github.io/r808chibagouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
-    <div class="brand"><a href="../index.html">CTZC 千葉豪雨ポータル</a></div>
+    <div class="brand"><a href="../index.html">CTZC 北陸豪雨ポータル</a></div>
     <nav class="nav">
-      <a href="index.html">千葉県にお住まいの方へ</a>
+      <a href="index.html">石川・富山・福井にお住まいの方へ</a>
       <a href="updates.html">更新履歴</a>
       <a href="situations.html">困りごとから探す</a>
       <a href="timeline.html">これから起きること</a>
@@ -56,13 +51,13 @@
     </p>
     <div class="card" id="page-actions">
       <label class="sort-label" for="muni-q">市町村名で絞り込む（ひらがな・カタカナでも可）</label>
-      <input class="search" id="muni-q" type="search" placeholder="例：千葉市、いちかわ、キョナン" autocomplete="off">
+      <input class="search" id="muni-q" type="search" placeholder="例：金沢市、とやま、あわら" autocomplete="off">
       <p class="meta" id="muni-share" hidden>この絞り込みは URL に入っています。 <button type="button" class="btn secondary btn-small">絞り込んだURLをコピー</button> <span data-note></span></p>
       <p class="meta" id="count"></p>
     </div>
     <div id="days"></div>
     <p class="empty" id="empty" hidden>該当する更新はまだありません。検知は数時間おきです。</p>
-    <p class="meta">この履歴は <a href="https://github.com/office626/r808chibagouu" target="_blank" rel="noopener">GitHub</a> の自動処理（watch.json）が元です。検知漏れ・誤検知に気づいたら、ページ下の「報告する」から教えてください。</p>
+    <p class="meta">この履歴は <a href="https://github.com/office626/r808hokurikugouu" target="_blank" rel="noopener">GitHub</a> の自動処理（watch.json）が元です。検知漏れ・誤検知に気づいたら、ページ下の「報告する」から教えてください。</p>
   </main>
   <footer>
     <p>本サイトは行政の公式発表ではありません。申請・期限は各公式窓口へ。</p>
@@ -91,7 +86,7 @@
       return out;
     }
     Promise.all([
-      fetch("../data/municipalities.json").then(function (r) { return r.json(); }),
+      fetch("../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
       fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; }),
       Promise.all(monthList().map(function (m) {
         return fetch("../data/watch-log/" + m + ".json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });

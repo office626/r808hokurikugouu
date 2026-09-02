@@ -745,7 +745,7 @@ flowchart TB
 - [SaigaiAId](https://github.com/kanawha-st/SaigaiAId)
 - [気象庁防災 XML PULL](https://xml.kishou.go.jp/xmlpull.html)
 - [消防庁 RSS](https://www.fdma.go.jp/about/rss.html)
-- GitHub: https://github.com/office626/r808chibagouu
+- GitHub: https://github.com/office626/r808hokurikugouu
 
 ---
 

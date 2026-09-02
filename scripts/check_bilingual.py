@@ -61,7 +61,7 @@ def broken_internal_links(path: Path, text: str) -> list[str]:
         if not target_path:
             continue
         if target_path.startswith("/"):
-            marker = "/r808chibagouu/"
+            marker = "/r808hokurikugouu/"
             if marker not in target_path:
                 continue
             target = SITE / target_path.split(marker, 1)[1]
@@ -93,7 +93,7 @@ def validate() -> tuple[list[str], list[tuple[Path, Path]]]:
         if 'property="og:locale" content="en_US"' not in en_text:
             errors.append(f"英語ページの og:locale が en_US ではありません: site/en/{rel}")
         canonical = re.search(r'<link rel="canonical" href="([^"]+)"', en_text)
-        if not canonical or "/r808chibagouu/en/" not in canonical.group(1):
+        if not canonical or "/r808hokurikugouu/en/" not in canonical.group(1):
             errors.append(f"英語ページの canonical が /en/ ではありません: site/en/{rel}")
         if "language-switch.js" not in jp_text:
             errors.append(f"日本語ページに言語切替JSがありません: site/{rel}")

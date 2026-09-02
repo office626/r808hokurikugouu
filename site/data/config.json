@@ -1,15 +1,17 @@
 {
   "_comment": "このサイト固有の設定。別の災害・地域へ複製するときは、まずここを差し替える。手順は docs/replication-checklist.md",
-  "repo": "office626/r808chibagouu",
-  "base_url": "https://office626.github.io/r808chibagouu/",
-  "ua_prefix": "CTZC-r808chibagouu",
+  "repo": "office626/r808hokurikugouu",
+  "base_url": "https://office626.github.io/r808hokurikugouu/",
+  "ua_prefix": "CTZC-r808hokurikugouu",
   "disaster": {
-    "name": "令和8年8月千葉豪雨",
-    "name_en": "August 2026 Chiba Heavy Rain",
-    "onset": "2026-08-13"
+    "name": "令和8年8月北陸豪雨",
+    "name_en": "August 2026 Hokuriku Heavy Rain",
+    "onset": "2026-08-26"
   },
   "regions": [
-    { "slug": "pref-chiba", "name": "千葉県", "name_en": "Chiba Prefecture" },
+    { "slug": "pref-ishikawa", "name": "石川県", "name_en": "Ishikawa Prefecture" },
+    { "slug": "pref-toyama", "name": "富山県", "name_en": "Toyama Prefecture" },
+    { "slug": "pref-fukui", "name": "福井県", "name_en": "Fukui Prefecture" },
     { "slug": "japan", "name": "国", "name_en": "National government" }
   ]
 }

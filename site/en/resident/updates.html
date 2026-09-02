@@ -3,38 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Official Page Update History | CTZC Chiba Heavy Rain Portal</title>
+  <title>Official Page Update History | CTZC Hokuriku Heavy Rain Portal</title>
   <link rel="stylesheet" href="../../css/style.css">
   <meta name="description" content="We automatically detect when official municipal pages about the heavy rain, damage certificates, disaster waste and more are updated, and list the changes by date. Check the official page for what changed. Filter by municipality.">
   <meta name="theme-color" content="#0b5cab">
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-  <link rel="canonical" href="https://office626.github.io/r808chibagouu/en/resident/updates.html">
-  <link rel="alternate" hreflang="ja" href="https://office626.github.io/r808chibagouu/resident/updates.html">
-  <link rel="alternate" hreflang="en" href="https://office626.github.io/r808chibagouu/en/resident/updates.html">
-  <link rel="alternate" hreflang="x-default" href="https://office626.github.io/r808chibagouu/resident/updates.html">
+  <link rel="canonical" href="https://office626.github.io/r808hokurikugouu/en/resident/updates.html">
+  <link rel="alternate" hreflang="ja" href="https://office626.github.io/r808hokurikugouu/resident/updates.html">
+  <link rel="alternate" hreflang="en" href="https://office626.github.io/r808hokurikugouu/en/resident/updates.html">
+  <link rel="alternate" hreflang="x-default" href="https://office626.github.io/r808hokurikugouu/resident/updates.html">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CTZC Chiba Heavy Rain Portal">
+  <meta property="og:site_name" content="CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="Official Page Update History | CTZC Chiba Heavy Rain Portal">
+  <meta property="og:title" content="Official Page Update History | CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:description" content="Automatically detected updates to official municipal pages, listed by date.">
-  <meta property="og:url" content="https://office626.github.io/r808chibagouu/en/resident/updates.html">
-  <meta property="og:image" content="https://office626.github.io/r808chibagouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="For recovery from the August 2026 Chiba heavy rain. Organized by CivicTechZenChiba">
+  <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/en/resident/updates.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Official Page Update History | CTZC Chiba Heavy Rain Portal">
+  <meta name="twitter:title" content="Official Page Update History | CTZC Hokuriku Heavy Rain Portal">
   <meta name="twitter:description" content="Automatically detected updates to official municipal pages, listed by date.">
-  <meta name="twitter:image" content="https://office626.github.io/r808chibagouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
-    <div class="brand"><a href="../index.html">CTZC Chiba Heavy Rain Portal</a></div>
+    <div class="brand"><a href="../index.html">CTZC Hokuriku Heavy Rain Portal</a></div>
     <nav class="nav">
-      <a href="index.html">For Chiba Residents</a><a href="updates.html">Update History</a><a href="situations.html">Find Help by Problem</a><a href="timeline.html">What May Happen Next</a><a href="housing.html">If Your Home Was Damaged</a><a href="life.html">Travel and Daily Life</a><a href="business.html">For Affected Businesses</a><a href="municipalities.html">Find Your Municipality</a><a href="prefecture.html">Prefectural and National Support</a>
+      <a href="index.html">For Ishikawa, Toyama and Fukui Residents</a><a href="updates.html">Update History</a><a href="situations.html">Find Help by Problem</a><a href="timeline.html">What May Happen Next</a><a href="housing.html">If Your Home Was Damaged</a><a href="life.html">Travel and Daily Life</a><a href="business.html">For Affected Businesses</a><a href="municipalities.html">Find Your Municipality</a><a href="prefecture.html">Prefectural and National Support</a>
     </nav>
     <p class="meta" id="checked"></p>
   </header>
@@ -48,13 +43,13 @@
     </p>
     <div class="card" id="page-actions">
       <label class="sort-label" for="muni-q">Filter by municipality (Japanese kana or romanized slug also accepted)</label>
-      <input class="search" id="muni-q" type="search" placeholder="Examples: Chiba, Ichikawa, kyonan" autocomplete="off">
+      <input class="search" id="muni-q" type="search" placeholder="Examples: Hokuriku, Ichikawa, kyonan" autocomplete="off">
       <p class="meta" id="muni-share" hidden>This filter is part of the URL. <button type="button" class="btn secondary btn-small">Copy filtered URL</button> <span data-note></span></p>
       <p class="meta" id="count"></p>
     </div>
     <div id="days"></div>
     <p class="empty" id="empty" hidden>No matching updates yet. Checks run every few hours.</p>
-    <p class="meta">This history is generated automatically (watch.json) on <a href="https://github.com/office626/r808chibagouu" target="_blank" rel="noopener">GitHub</a>. If you notice missed or false detections, use “Report it” at the bottom of the page.</p>
+    <p class="meta">This history is generated automatically (watch.json) on <a href="https://github.com/office626/r808hokurikugouu" target="_blank" rel="noopener">GitHub</a>. If you notice missed or false detections, use “Report it” at the bottom of the page.</p>
   </main>
   <footer>
     <p>This site is not an official government publication. Apply through official offices; deadlines are set by each program.</p>
@@ -85,7 +80,7 @@
       return out;
     }
     Promise.all([
-      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }),
+      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
       fetch("../../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; }),
       Promise.all(monthList().map(function (m) {
         return fetch("../../data/watch-log/" + m + ".json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });

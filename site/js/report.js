@@ -42,7 +42,7 @@
       if (e.target && target) u += "&" + encodeURIComponent(e.target) + "=" + encodeURIComponent(target);
       return u;
     }
-    return "https://github.com/office626/r808chibagouu/issues/new?title=" +
+    return "https://github.com/office626/r808hokurikugouu/issues/new?title=" +
       encodeURIComponent(T.issueTitle(target)) + "&body=" + encodeURIComponent(T.issueBody(page, target));
   }
   function decorate(scope) {
