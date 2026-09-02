@@ -42,7 +42,7 @@ def main() -> int:
     summary = {
         "generated_at": datetime.now(JST).isoformat(timespec="seconds"),
         "note": (
-            "令和8年8月千葉豪雨で、千葉県内の市町村・県・国の公式ページの本文が変わったことを"
+            "令和8年8月北陸豪雨で、石川・富山・福井の市町村・県・国の公式ページの本文が変わったことを"
             "数時間おきに自動で見た記録の要約。検知した時刻であり、実際の更新はそれより前のことがある。"
         ),
         "period": {"first": events[0].get("at", ""), "last": events[-1].get("at", "")},

@@ -61,10 +61,118 @@
     "unknown": "Unverified"
   },
   "by_slug": {
-    "pref-ishikawa": [],
-    "pref-toyama": [],
-    "pref-fukui": [],
-    "japan": [],
+    "pref-ishikawa": [
+      {
+        "kind": "hub",
+        "kind_label": "大雨情報まとめ",
+        "kind_label_en": "Heavy-rain information hub",
+        "title": "石川県防災ポータル",
+        "url": "https://pref-ishikawa.eye-bousai-plus.com/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      },
+      {
+        "kind": "home",
+        "kind_label": "公式",
+        "kind_label_en": "Official site",
+        "title": "石川県",
+        "url": "https://www.pref.ishikawa.lg.jp/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      }
+    ],
+    "pref-toyama": [
+      {
+        "kind": "hub",
+        "kind_label": "大雨情報まとめ",
+        "kind_label_en": "Heavy-rain information hub",
+        "title": "富山防災WEB",
+        "url": "http://www.bousai.pref.toyama.jp/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      },
+      {
+        "kind": "home",
+        "kind_label": "公式",
+        "kind_label_en": "Official site",
+        "title": "富山県",
+        "url": "https://www.pref.toyama.jp/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      }
+    ],
+    "pref-fukui": [
+      {
+        "kind": "hub",
+        "kind_label": "大雨情報まとめ",
+        "kind_label_en": "Heavy-rain information hub",
+        "title": "福井県 危機対策・防災課",
+        "url": "https://www.pref.fukui.lg.jp/doc/kikitaisaku/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      },
+      {
+        "kind": "home",
+        "kind_label": "公式",
+        "kind_label_en": "Official site",
+        "title": "福井県",
+        "url": "https://www.pref.fukui.lg.jp/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      }
+    ],
+    "japan": [
+      {
+        "kind": "support",
+        "kind_label": "支援策",
+        "kind_label_en": "Support",
+        "title": "被災者支援に関する各種制度",
+        "url": "https://www.bousai.go.jp/taisaku/hisaisyagyousei/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      },
+      {
+        "kind": "home",
+        "kind_label": "公式",
+        "kind_label_en": "Official site",
+        "title": "内閣府 防災情報",
+        "url": "https://www.bousai.go.jp/",
+        "status": "open",
+        "status_label": "受付中・掲載中",
+        "status_label_en": "Open / posted",
+        "checked": "2026-09-02",
+        "deadline": "",
+        "note": ""
+      }
+    ],
     "kanazawa": [
       {
         "kind": "home",

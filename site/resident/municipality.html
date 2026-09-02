@@ -21,14 +21,9 @@
   <meta property="og:title" content="市町村ページ | CTZC 北陸豪雨ポータル">
   <meta property="og:description" content="市町村ごとの避難情報、いま受けられる支援策、行政の記録、被害の報道。見出しと公式リンクのみで、報道の全文は転載しません。">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/resident/municipality.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="令和8年8月北陸豪雨からの復旧のために。主催 CivicTechZenChiba">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="市町村ページ | CTZC 北陸豪雨ポータル">
   <meta name="twitter:description" content="市町村ごとの避難情報、いま受けられる支援策、行政の記録、被害の報道。見出しと公式リンクのみで、報道の全文は転載しません。">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -156,10 +151,10 @@
     var params = new URLSearchParams(location.search);
     var slug = params.get("slug");
     Promise.all([
-      fetch("../data/municipalities.json").then(function (r) { return r.json(); }),
-      fetch("../data/collection.json").then(function (r) { return r.json(); }),
-      fetch("../data/supports.json").then(function (r) { return r.json(); }),
-      fetch("../data/press.json").then(function (r) { return r.json(); }),
+      fetch("../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
+      fetch("../data/collection.json").then(function (r) { return r.json(); }).catch(function () { return { items: [], snapshots: {} }; }),
+      fetch("../data/supports.json").then(function (r) { return r.json(); }).catch(function () { return { by_slug: {} }; }),
+      fetch("../data/press.json").then(function (r) { return r.json(); }).catch(function () { return { items: [], by_slug: {}, l5_slugs: [], search: {} }; }),
       fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (pair) {
       var rows = pair[0];
@@ -168,7 +163,7 @@
       var press = pair[3];
       var watch = pair[4];
       SupportsView.setWatch(watch);
-      document.getElementById("fetched").textContent = "最終取得: " + fmt(col.fetched_at);
+      document.getElementById("fetched").textContent = (col.fetched_at ? "最終取得: " + fmt(col.fetched_at) : "収集は準備中");
       var m = rows.find(function (x) { return x.slug === slug; });
       if (!m) {
         document.getElementById("title").textContent = "市町村が見つかりません";
@@ -298,7 +293,7 @@
       var yahooTpl = (press.search && press.search.yahoo) || "https://news.search.yahoo.co.jp/search?ei=UTF-8&p={q}";
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo), "Yahoo!ニュースで「" + m.name + " 北陸豪雨」"));
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo2), "Yahoo!ニュースで「" + m.name + " 大雨 被害」"));
-      box.appendChild(searchLink((press.search && press.search.nhk_local) || "https://news.web.nhk/newsweb/area/120", "NHKニュース（千葉）"));
+      box.appendChild(searchLink((press.search && press.search.nhk_local) || "https://news.web.nhk/newsweb/area/120", "NHKニュース"));
       var logs = col.items.filter(function (it) {
         return it.slug === slug && it.source_type !== "news";
       });

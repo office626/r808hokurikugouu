@@ -20,14 +20,9 @@
   <meta property="og:title" content="Municipality | CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:description" content="Municipality-level evacuation information, currently available support, administrative records, and damage reports.">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/en/resident/municipality.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="Supporting recovery from the August 2026 Hokuriku heavy rain disaster. Organized by CivicTechZenHokuriku.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Municipality | CTZC Hokuriku Heavy Rain Portal">
   <meta name="twitter:description" content="Municipality-level evacuation information, currently available support, administrative records, and damage reports.">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -162,10 +157,10 @@
     var params = new URLSearchParams(location.search);
     var slug = params.get("slug");
     Promise.all([
-      fetch("../../data/municipalities.json").then(function (response) { return response.json(); }),
-      fetch("../../data/collection.json").then(function (response) { return response.json(); }),
-      fetch("../../data/supports.json").then(function (response) { return response.json(); }),
-      fetch("../../data/press.json").then(function (response) { return response.json(); }),
+      fetch("../../data/municipalities.json").then(function (response) { return response.json(); }).catch(function () { return []; }),
+      fetch("../../data/collection.json").then(function (response) { return response.json(); }).catch(function () { return { items: [], snapshots: {} }; }),
+      fetch("../../data/supports.json").then(function (response) { return response.json(); }).catch(function () { return { by_slug: {} }; }),
+      fetch("../../data/press.json").then(function (response) { return response.json(); }).catch(function () { return { items: [], by_slug: {}, l5_slugs: [], search: {} }; }),
       fetch("../../data/watch.json").then(function (response) { return response.json(); }).catch(function () { return null; })
     ]).then(function (pair) {
       var rows = pair[0];

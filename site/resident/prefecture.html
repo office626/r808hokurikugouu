@@ -21,14 +21,9 @@
   <meta property="og:title" content="県・国の支援 | CTZC 北陸豪雨ポータル">
   <meta property="og:description" content="石川県・富山県・福井県と国の災害・支援情報の公式ページへの入口と、県・国のログ。">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/resident/prefecture.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="令和8年8月北陸豪雨からの復旧のために。主催 CivicTechZenChiba">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="県・国の支援 | CTZC 北陸豪雨ポータル">
   <meta name="twitter:description" content="石川県・富山県・福井県と国の災害・支援情報の公式ページへの入口と、県・国のログ。">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -60,6 +55,9 @@
     <div class="card" id="page-actions">
       <h2>石川県・富山県・福井県 <span class="badge admin">行政</span></h2>
       <ul>
+        <li><a href="https://www.pref.ishikawa.lg.jp/" target="_blank" rel="noopener">石川県</a>／<a href="https://pref-ishikawa.eye-bousai-plus.com/" target="_blank" rel="noopener">石川県防災ポータル</a></li>
+        <li><a href="https://www.pref.toyama.jp/" target="_blank" rel="noopener">富山県</a>／<a href="http://www.bousai.pref.toyama.jp/" target="_blank" rel="noopener">富山防災WEB</a></li>
+        <li><a href="https://www.pref.fukui.lg.jp/" target="_blank" rel="noopener">福井県</a>／<a href="https://www.pref.fukui.lg.jp/doc/kikitaisaku/" target="_blank" rel="noopener">福井県 危機対策・防災課</a></li>
       </ul>
     </div>
     <div class="card">
@@ -68,8 +66,8 @@
         <li><a href="https://www.bousai.go.jp/">内閣府 防災情報</a></li>
         <li><a href="https://www.bousai.go.jp/taisaku/hisaisyagyousei/">被災者支援に関する各種制度</a></li>
         <li><a href="https://www.fdma.go.jp/disaster/info/">消防庁 災害情報</a></li>
-        <li><a href="https://www.fdma.go.jp/disaster/info/items/20260813ooame8.pdf">消防庁 北陸豪雨 第8報（PDF）</a></li>
-        <li><a href="https://www.jma.go.jp/bosai/warning/#area_type=offices&amp;area_code=120000">気象庁 警報・注意報（石川県・富山県・福井県）</a></li>
+        <li><a href="https://www.fdma.go.jp/disaster/info/">消防庁 災害情報</a></li>
+        <li><a href="https://www.jma.go.jp/bosai/warning/">気象庁 警報・注意報</a></li>
         <li><a href="https://www.river.go.jp/">川の防災情報</a></li>
       </ul>
     </div>
@@ -78,7 +76,7 @@
       <p>店舗・工場の被害は、住まいの支援とは別の窓口になることが多いです。</p>
       <ul>
         <li><a href="business.html">被災した事業者の方へ（このサイト）</a></li>
-        <li><a href="https://www.kanto.meti.go.jp/saigai_kanren/index.html" target="_blank" rel="noopener">関東経済産業局 災害関連（特別相談窓口）</a></li>
+        <li><a href="https://www.chubu.meti.go.jp/" target="_blank" rel="noopener">中部経済産業局 災害関連（特別相談窓口）</a></li>
         <li><a href="https://www.chusho.meti.go.jp/saigai.html" target="_blank" rel="noopener">中小企業庁 災害関連情報</a></li>
       </ul>
     </div>
@@ -104,13 +102,13 @@
   <script>
     function fmt(iso) { return iso.replace("T", " ").replace("+09:00", " JST"); }
     Promise.all([
-      fetch("../data/supports.json").then(function (r) { return r.json(); }),
+      fetch("../data/supports.json").then(function (r) { return r.json(); }).catch(function () { return { by_slug: {} }; }),
       fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (pair) {
       SupportsView.setWatch(pair[1]);
       var bySlug = pair[0].by_slug || {};
       // 県は config.json の regions から出す（複数県にまたがる災害に対応するため）
-      fetch("../data/config.json").then(function (r) { return r.json(); }).then(function (cfg) {
+      fetch("../data/config.json").then(function (r) { return r.json(); }).catch(function () { return {}; }).then(function (cfg) {
         var box = document.getElementById("pref-support");
         (cfg.regions || []).forEach(function (g) {
           if (g.slug === "japan") return;
@@ -129,7 +127,7 @@
     fetch("../data/collection.json")
       .then(function (r) { return r.json(); })
       .then(function (col) {
-        document.getElementById("fetched").textContent = "最終取得: " + fmt(col.fetched_at);
+        document.getElementById("fetched").textContent = (col.fetched_at ? "最終取得: " + fmt(col.fetched_at) : "収集は準備中");
         var logs = col.items.filter(function (it) { return it.slug === "prefecture"; });
         logs.sort(function (a, b) { return a.occurred_at < b.occurred_at ? 1 : -1; });
         var ul = document.getElementById("log");

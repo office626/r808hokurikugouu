@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# ※このスクリプトは千葉版のまま。収集元・キーワード・市町村名が千葉固有なので、
+# 北陸版では書き直すまで動かさない（daily.yml から外してある）。
 """初回の手動収集結果を site/data/collection.json に書き出す。全文転載しない。"""
 import json
 from pathlib import Path

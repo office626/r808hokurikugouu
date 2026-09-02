@@ -405,7 +405,7 @@ def build_all() -> None:
         ("If Your Home Was Damaged", "Take photos. Do not sign a contract first. Know the difference between damage certificates. Beware of disaster-related scams."),
         ("Transport & Daily Life", "Trains, roads, electricity, gas, water, hospitals and shopping. Check each operator's official service or opening information."),
         ("If Your Business Was Damaged", "Document shops and factories and find consultation desks. Loans and guarantees require an official designation or application call."),
-        ("Search by Municipality", "All 54 municipalities. Prefectural evacuation and shelter information, plus official damage-certificate and support links."),
+        ("Search by Municipality", "All 51 municipalities. Prefectural evacuation and shelter information, plus official damage-certificate and support links."),
     ])
     s.h2("Official sources to check now")
     s.pills(["Prefectural disaster portals", "Prefecture: Heavy Rain Response", "JMA Warnings", "Your Municipality"])

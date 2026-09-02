@@ -21,14 +21,9 @@
   <meta property="og:title" content="公式ページの更新履歴 | CTZC 北陸豪雨ポータル">
   <meta property="og:description" content="市町村公式の大雨情報・罹災証明・災害ごみなどのページが更新されたことを自動で検知し、日付ごとに一覧します。">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/resident/updates.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="令和8年8月北陸豪雨からの復旧のために。主催 CivicTechZenChiba">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="公式ページの更新履歴 | CTZC 北陸豪雨ポータル">
   <meta name="twitter:description" content="市町村公式ページの更新を自動検知して日付ごとに一覧します。">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -56,7 +51,7 @@
     </p>
     <div class="card" id="page-actions">
       <label class="sort-label" for="muni-q">市町村名で絞り込む（ひらがな・カタカナでも可）</label>
-      <input class="search" id="muni-q" type="search" placeholder="例：金沢市、いちかわ、キョナン" autocomplete="off">
+      <input class="search" id="muni-q" type="search" placeholder="例：金沢市、とやま、あわら" autocomplete="off">
       <p class="meta" id="muni-share" hidden>この絞り込みは URL に入っています。 <button type="button" class="btn secondary btn-small">絞り込んだURLをコピー</button> <span data-note></span></p>
       <p class="meta" id="count"></p>
     </div>
@@ -91,7 +86,7 @@
       return out;
     }
     Promise.all([
-      fetch("../data/municipalities.json").then(function (r) { return r.json(); }),
+      fetch("../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
       fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; }),
       Promise.all(monthList().map(function (m) {
         return fetch("../data/watch-log/" + m + ".json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });

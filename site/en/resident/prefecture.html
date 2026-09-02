@@ -20,14 +20,9 @@
   <meta property="og:title" content="Prefectural and National Support | CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:description" content="Official disaster and support information from the three prefectures and the national government, plus prefectural and national records.">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/en/resident/prefecture.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="Supporting recovery from the August 2026 Hokuriku heavy rain disaster. Organized by CivicTechZenHokuriku.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Prefectural and National Support | CTZC Hokuriku Heavy Rain Portal">
   <meta name="twitter:description" content="Official disaster and support information from the three prefectures and the national government, plus prefectural and national records.">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -58,6 +53,9 @@
     <div class="card" id="page-actions">
       <h2>Ishikawa, Toyama and Fukui <span class="badge admin">Government</span></h2>
       <ul>
+        <li><a href="https://www.pref.ishikawa.lg.jp/" target="_blank" rel="noopener">Ishikawa Prefecture</a>／<a href="https://pref-ishikawa.eye-bousai-plus.com/" target="_blank" rel="noopener">Ishikawa disaster portal</a></li>
+        <li><a href="https://www.pref.toyama.jp/" target="_blank" rel="noopener">Toyama Prefecture</a>／<a href="http://www.bousai.pref.toyama.jp/" target="_blank" rel="noopener">Toyama disaster web</a></li>
+        <li><a href="https://www.pref.fukui.lg.jp/" target="_blank" rel="noopener">Fukui Prefecture</a>／<a href="https://www.pref.fukui.lg.jp/doc/kikitaisaku/" target="_blank" rel="noopener">Fukui crisis management division</a></li>
       </ul>
     </div>
     <div class="card">
@@ -66,8 +64,8 @@
         <li><a href="https://www.bousai.go.jp/">Cabinet Office Disaster Management Information (Japanese)</a></li>
         <li><a href="https://www.bousai.go.jp/taisaku/hisaisyagyousei/">Support Programs for Disaster Victims (Japanese)</a></li>
         <li><a href="https://www.fdma.go.jp/disaster/info/">Fire and Disaster Management Agency Disaster Information (Japanese)</a></li>
-        <li><a href="https://www.fdma.go.jp/disaster/info/items/20260813ooame8.pdf">FDMA Hokuriku Heavy Rain, Eighth Report (PDF; Japanese)</a></li>
-        <li><a href="https://www.jma.go.jp/bosai/warning/#area_type=offices&amp;area_code=120000">Japan Meteorological Agency Warnings and Advisories for Hokuriku (Japanese)</a></li>
+        <li><a href="https://www.fdma.go.jp/disaster/info/">FDMA Hokuriku Heavy Rain, Eighth Report (PDF; Japanese)</a></li>
+        <li><a href="https://www.jma.go.jp/bosai/warning/">Japan Meteorological Agency Warnings and Advisories for Hokuriku (Japanese)</a></li>
         <li><a href="https://www.river.go.jp/">River Disaster Prevention Information (Japanese)</a></li>
       </ul>
     </div>
@@ -76,7 +74,7 @@
       <p>Damage to shops and factories is often handled separately from residential support.</p>
       <ul>
         <li><a href="business.html">For affected businesses (this site)</a></li>
-        <li><a href="https://www.kanto.meti.go.jp/saigai_kanren/index.html" target="_blank" rel="noopener">Kanto Bureau of Economy, Trade and Industry disaster support and special consultation desks (Japanese)</a></li>
+        <li><a href="https://www.chubu.meti.go.jp/" target="_blank" rel="noopener">Chubu Bureau of Economy, Trade and Industry disaster support and special consultation desks (Japanese)</a></li>
         <li><a href="https://www.chusho.meti.go.jp/saigai.html" target="_blank" rel="noopener">Small and Medium Enterprise Agency disaster information (Japanese)</a></li>
       </ul>
     </div>
@@ -101,13 +99,13 @@
   <script src="../../js/supports.js"></script>
   <script>
     Promise.all([
-      fetch("../../data/supports.json").then(function (r) { return r.json(); }),
+      fetch("../../data/supports.json").then(function (r) { return r.json(); }).catch(function () { return { by_slug: {} }; }),
       fetch("../../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (pair) {
       SupportsView.setWatch(pair[1]);
       var bySlug = pair[0].by_slug || {};
       // 県は config.json の regions から出す（複数県にまたがる災害に対応するため）
-      fetch("../../data/config.json").then(function (r) { return r.json(); }).then(function (cfg) {
+      fetch("../../data/config.json").then(function (r) { return r.json(); }).catch(function () { return {}; }).then(function (cfg) {
         var box = document.getElementById("pref-support");
         (cfg.regions || []).forEach(function (g) {
           if (g.slug === "japan") return;

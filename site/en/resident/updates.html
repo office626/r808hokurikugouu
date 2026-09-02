@@ -21,14 +21,9 @@
   <meta property="og:title" content="Official Page Update History | CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:description" content="Automatically detected updates to official municipal pages, listed by date.">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/en/resident/updates.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="For recovery from the August 2026 Hokuriku heavy rain. Organized by CivicTechZenHokuriku">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Official Page Update History | CTZC Hokuriku Heavy Rain Portal">
   <meta name="twitter:description" content="Automatically detected updates to official municipal pages, listed by date.">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -85,7 +80,7 @@
       return out;
     }
     Promise.all([
-      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }),
+      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
       fetch("../../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; }),
       Promise.all(monthList().map(function (m) {
         return fetch("../../data/watch-log/" + m + ".json").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });

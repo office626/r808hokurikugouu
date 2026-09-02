@@ -20,14 +20,9 @@
   <meta property="og:title" content="For Ishikawa, Toyama and Fukui Residents | CTZC Hokuriku Heavy Rain Portal">
   <meta property="og:description" content="Guidance on damaged homes, travel and daily life, businesses, and municipal support. Apply through official contact points.">
   <meta property="og:url" content="https://office626.github.io/r808hokurikugouu/en/resident/index.html">
-  <meta property="og:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="537">
-  <meta property="og:image:alt" content="Working toward recovery from the August 2026 Hokuriku heavy rain. Organized by CivicTechZenHokuriku.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="For Ishikawa, Toyama and Fukui Residents | CTZC Hokuriku Heavy Rain Portal">
   <meta name="twitter:description" content="Guidance on damaged homes, travel and daily life, businesses, and municipal support. Apply through official contact points.">
-  <meta name="twitter:image" content="https://office626.github.io/r808hokurikugouu/img/chiba-recovery-banner.jpg">
 </head>
 <body>
   <header>
@@ -70,7 +65,7 @@
     <div class="card">
       <h2>Official Information to Check Now</h2>
       <ul>
-        <li><a href="https://www.jma.go.jp/bosai/warning/#area_type=offices&amp;area_code=120000" target="_blank" rel="noopener">Japan Meteorological Agency: Warnings for Ishikawa, Toyama and Fukui</a> <span class="badge admin">Government</span></li>
+        <li><a href="https://www.jma.go.jp/bosai/warning/" target="_blank" rel="noopener">Japan Meteorological Agency: Warnings for Ishikawa, Toyama and Fukui</a> <span class="badge admin">Government</span></li>
       </ul>
     </div>
     <div class="card">
@@ -110,8 +105,8 @@
           ". Always check official sources for the latest information.";
       });
     Promise.all([
-      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }),
-      fetch("../../data/supports.json").then(function (r) { return r.json(); }),
+      fetch("../../data/municipalities.json").then(function (r) { return r.json(); }).catch(function () { return []; }),
+      fetch("../../data/supports.json").then(function (r) { return r.json(); }).catch(function () { return { by_slug: {} }; }),
       fetch("../../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (pair) {
       var munis = pair[0];
