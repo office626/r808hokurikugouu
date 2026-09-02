@@ -200,7 +200,7 @@ class Sheet:
         )
         self.d.text(
             (916, y + 118),
-            "office626.github.io/r808chibagouu/",
+            "office626.github.io/r808hokurikugouu/",
             font=self.f("r", 15),
             fill=(180, 206, 232),
         )

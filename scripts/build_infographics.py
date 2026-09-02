@@ -157,7 +157,7 @@ class Sheet:
         fb = self.f("b", 22)
         self.d.text((M, y + 18), "図の中はタップしても進みません。実際のボタンはページの上にあります。", font=fb, fill=(255, 232, 170))
         self.d.text((M, y + 56), "CTZC（CivicTechZenChiba）有志運営　／　行政の公式発表ではありません", font=f, fill=(230, 240, 250))
-        self.d.text((M, y + 92), "申請・対象・期間は市町村・県・国の公式窓口で確認　／　office626.github.io/r808chibagouu/", font=f, fill=(180, 206, 232))
+        self.d.text((M, y + 92), "申請・対象・期間は市町村・県・国の公式窓口で確認　／　office626.github.io/r808hokurikugouu/", font=f, fill=(180, 206, 232))
 
     def space(self, n=18):
         self.y += n
