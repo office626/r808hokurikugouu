@@ -1,6 +1,6 @@
-# 令和8年8月千葉豪雨 — CTZC 復興支援ポータル（要件）
+# 令和8年8月北陸豪雨 — CTZC 復興支援ポータル（要件）
 
-CivicTechZenChiba（CTZC）として、令和8年8月千葉豪雨の復興・災害対策のために検討しているポータルサイトの**要件定義**と、GitHub Pages 上の簡易公開サイトです。
+CivicTechZenChiba（CTZC）として、令和8年8月北陸豪雨の復興・災害対策のために検討しているポータルサイトの**要件定義**と、GitHub Pages 上の簡易公開サイトです。
 
 **公開サイト:** https://office626.github.io/r808hokurikugouu/
 
