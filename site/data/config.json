@@ -6,12 +6,14 @@
   "disaster": {
     "name": "令和8年8月北陸豪雨",
     "name_en": "August 2026 Hokuriku Heavy Rain",
-    "onset": "2026-08-26"
+    "_onset_comment": "国土交通省「令和8年8月27日からの大雨による被害状況等について（第8報）」による。石川・富山は8/27朝に線状降水帯とレベル5大雨特別警報、福井は8/29夜から降り始め8/30朝にレベル5。3県で最初に被害が出た8/27を発災日とする。 https://www.mlit.go.jp/saigai/saigai_260827.html",
+    "onset": "2026-08-27"
   },
+  "_regions_comment": "nhk_area は NHK ニュースの県別ページの番号。実際に開いて県名が出ることを確かめた値（石川170 / 富山160 / 福井180）。",
   "regions": [
-    { "slug": "pref-ishikawa", "name": "石川県", "name_en": "Ishikawa Prefecture" },
-    { "slug": "pref-toyama", "name": "富山県", "name_en": "Toyama Prefecture" },
-    { "slug": "pref-fukui", "name": "福井県", "name_en": "Fukui Prefecture" },
+    { "slug": "pref-ishikawa", "name": "石川県", "name_en": "Ishikawa Prefecture", "nhk_area": "170" },
+    { "slug": "pref-toyama", "name": "富山県", "name_en": "Toyama Prefecture", "nhk_area": "160" },
+    { "slug": "pref-fukui", "name": "福井県", "name_en": "Fukui Prefecture", "nhk_area": "180" },
     { "slug": "japan", "name": "国", "name_en": "National government" }
   ]
 }

@@ -139,6 +139,14 @@
       }
       items.forEach(function (it) { ul.appendChild(renderItem(it)); });
     }
+    function reliefLink(href) {
+      var a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "県の発表";
+      return a;
+    }
     function searchLink(href, label) {
       var a = document.createElement("a");
       a.className = "btn secondary";
@@ -155,13 +163,15 @@
       fetch("../data/collection.json").then(function (r) { return r.json(); }).catch(function () { return { items: [], snapshots: {} }; }),
       fetch("../data/supports.json").then(function (r) { return r.json(); }).catch(function () { return { by_slug: {} }; }),
       fetch("../data/press.json").then(function (r) { return r.json(); }).catch(function () { return { items: [], by_slug: {}, l5_slugs: [], search: {} }; }),
-      fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; })
+      fetch("../data/watch.json").then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch("../data/config.json").then(function (r) { return r.json(); }).catch(function () { return { regions: [] }; })
     ]).then(function (pair) {
       var rows = pair[0];
       var col = pair[1];
       var supports = pair[2];
       var press = pair[3];
       var watch = pair[4];
+      var cfg = pair[5];
       SupportsView.setWatch(watch);
       document.getElementById("fetched").textContent = (col.fetched_at ? "最終取得: " + fmt(col.fetched_at) : "収集は準備中");
       var m = rows.find(function (x) { return x.slug === slug; });
@@ -240,12 +250,17 @@
       });
       var sup = document.getElementById("support");
       var sp = document.createElement("p");
+      var relief = (col.links || {}).relief;
       if (snap.disaster_relief === "applied") {
-        sp.innerHTML = '県第3報時点で<strong>災害救助法の適用市町</strong>です。窓口・受付開始は公式で確認してください。 <a href="' + col.links.relief + '" target="_blank" rel="noopener">県の発表</a>';
-      } else if (snap.disaster_relief === "chiba_direct") {
-        sp.innerHTML = '県第3報では金沢市は<strong>災害救助を直接実施</strong>とされています。 <a href="' + col.links.relief + '" target="_blank" rel="noopener">県の発表</a>';
+        sp.textContent = "県の発表時点で災害救助法の適用市町です。窓口・受付開始は公式で確認してください。 ";
+        if (relief) sp.appendChild(reliefLink(relief));
+      } else if (snap.disaster_relief === "not_applied") {
+        sp.textContent = "県の発表時点では災害救助法の適用市町に含まれていません。制度の有無は公式で確認してください。 ";
+        if (relief) sp.appendChild(reliefLink(relief));
       } else {
-        sp.textContent = "県第3報時点では災害救助法の適用市町に含まれていません。制度の有無は公式で確認してください。";
+        // 適用の有無をこのサイトで確かめられていない状態。
+        // ここで「含まれていません」と書くと、適用市町の住民が非該当と読んでしまう。
+        sp.textContent = "災害救助法が適用されているかどうかは、このサイトではまだ確認できていません。市町村の公式ページと県の発表で確認してください。";
       }
       sup.appendChild(sp);
       var muniUl = document.getElementById("muni-support");
@@ -293,7 +308,12 @@
       var yahooTpl = (press.search && press.search.yahoo) || "https://news.search.yahoo.co.jp/search?ei=UTF-8&p={q}";
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo), "Yahoo!ニュースで「" + m.name + " 北陸豪雨」"));
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo2), "Yahoo!ニュースで「" + m.name + " 大雨 被害」"));
-      box.appendChild(searchLink((press.search && press.search.nhk_local) || "https://news.web.nhk/newsweb/area/120", "NHKニュース"));
+      var region = (cfg.regions || []).filter(function (r) { return r.slug === "pref-" + m.pref; })[0];
+      if (press.search && press.search.nhk_local) {
+        box.appendChild(searchLink(press.search.nhk_local, "NHKニュース"));
+      } else if (region && region.nhk_area) {
+        box.appendChild(searchLink("https://news.web.nhk/newsweb/area/" + region.nhk_area, "NHKニュース（" + region.name + "）"));
+      }
       var logs = col.items.filter(function (it) {
         return it.slug === slug && it.source_type !== "news";
       });
