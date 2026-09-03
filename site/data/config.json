@@ -4,8 +4,9 @@
   "base_url": "https://office626.github.io/r808hokurikugouu/",
   "ua_prefix": "CTZC-r808hokurikugouu",
   "disaster": {
-    "name": "令和8年8月北陸豪雨",
-    "name_en": "August 2026 Hokuriku Heavy Rain",
+    "name": "令和8年8月石川・富山・福井豪雨",
+    "name_en": "August 2026 Ishikawa, Toyama and Fukui Heavy Rain",
+    "_name_comment": "気象庁の命名はない（名称一覧に千葉豪雨はあるが北陸の項目はない）。国・市町村は「令和8年8月27日からの大雨」、福井は「8月29日からの大雨」。報道は「石川・富山豪雨」「北陸豪雨」で福井が落ちることが多い。3県が入る呼び方として支援セクター（東京ボランティア・市民活動センターほか）が使う名前を採る。ニュース検索の語だけは報道に合わせて「北陸豪雨」のまま。",
     "_onset_comment": "国土交通省「令和8年8月27日からの大雨による被害状況等について（第8報）」による。石川・富山は8/27朝に線状降水帯とレベル5大雨特別警報、福井は8/29夜から降り始め8/30朝にレベル5。3県で最初に被害が出た8/27を発災日とする。 https://www.mlit.go.jp/saigai/saigai_260827.html",
     "onset": "2026-08-27"
   },

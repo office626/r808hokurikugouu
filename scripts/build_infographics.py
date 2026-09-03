@@ -277,7 +277,7 @@ def build_all() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     s = Sheet(
-        "令和8年8月北陸豪雨　復興支援ポータル",
+        "令和8年8月石川・富山・福井豪雨　復興支援ポータル",
         "このサイトの入り口",
         "被災された方が、市町村と困りごとから必要な公式情報にたどりつくためのページです。",
         "anime-guide-map.jpg",

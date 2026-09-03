@@ -364,7 +364,7 @@ def build_all() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     s = Sheet(
-        "August 2026 Hokuriku Heavy Rain Recovery Support Portal",
+        "August 2026 Ishikawa, Toyama & Fukui Heavy Rain Portal",
         "Start Here",
         "A page that helps affected residents reach official information, starting from their municipality and their situation.",
         "anime-guide-map.jpg",
