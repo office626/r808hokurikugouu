@@ -40,7 +40,7 @@
   </header>
   <main>
     <h1 id="title">Loading…</h1>
-    <p class="about-strip"><strong>About this page:</strong> an <strong>unofficial</strong> one-stop summary of official notices, support, evacuation information and news about the August 2026 Hokuriku heavy rain for <span id="about-name">this municipality</span>, compiled by civic-tech volunteers (<a href="https://sites.google.com/view/civictechzenchiba/" target="_blank" rel="noopener">CivicTechZenHokuriku</a>). Apply and inquire at the municipal office. <a href="../index.html">Site home</a> / <a href="municipalities.html">Other municipalities</a> / <a href="situations.html">Find by situation</a></p>
+    <p class="about-strip"><strong>About this page:</strong> an <strong>unofficial</strong> one-stop summary of official notices, support, evacuation information and news about the August 2026 Ishikawa, Toyama and Fukui heavy rain for <span id="about-name">this municipality</span>, compiled by civic-tech volunteers (<a href="https://sites.google.com/view/civictechzenchiba/" target="_blank" rel="noopener">CivicTechZenChiba</a>). Apply and inquire at the municipal office. <a href="../index.html">Site home</a> / <a href="municipalities.html">Other municipalities</a> / <a href="situations.html">Find by situation</a></p>
     <div class="card" id="support-card">
       <h2>Support Currently Available</h2>
       <p class="notice">This is a volunteer-produced summary. Apply through official channels. Preliminary figures may change. News articles are represented only by their original titles and links; full text is not reproduced.</p>
@@ -161,15 +161,17 @@
       fetch("../../data/collection.json").then(function (response) { return response.json(); }).catch(function () { return { items: [], snapshots: {} }; }),
       fetch("../../data/supports.json").then(function (response) { return response.json(); }).catch(function () { return { by_slug: {} }; }),
       fetch("../../data/press.json").then(function (response) { return response.json(); }).catch(function () { return { items: [], by_slug: {}, l5_slugs: [], search: {} }; }),
-      fetch("../../data/watch.json").then(function (response) { return response.json(); }).catch(function () { return null; })
+      fetch("../../data/watch.json").then(function (response) { return response.json(); }).catch(function () { return null; }),
+      fetch("../../data/config.json").then(function (response) { return response.json(); }).catch(function () { return { regions: [] }; })
     ]).then(function (pair) {
       var rows = pair[0];
       var collection = pair[1];
       var supports = pair[2];
       var press = pair[3];
       var watch = pair[4];
+      var config = pair[5];
       SupportsView.setWatch(watch);
-      document.getElementById("fetched").textContent = "Last retrieved: " + fmt(collection.fetched_at);
+      document.getElementById("fetched").textContent = (collection.fetched_at ? "Last retrieved: " + fmt(collection.fetched_at) : "Automated collection is not running yet");
       var municipality = rows.find(function (item) { return item.slug === slug; });
       if (!municipality) {
         document.getElementById("title").textContent = "Municipality not found";
@@ -258,19 +260,23 @@
         strong.textContent = emphasis;
         reliefText.appendChild(strong);
         reliefText.appendChild(document.createTextNode(suffix + " "));
+        var href = (collection.links || {}).relief;
+        if (!href) return;
         var announcement = document.createElement("a");
-        announcement.href = collection.links.relief;
+        announcement.href = href;
         announcement.target = "_blank";
         announcement.rel = "noopener";
         announcement.textContent = "Prefectural announcement (Japanese)";
         reliefText.appendChild(announcement);
       }
       if (snapshot.disaster_relief === "applied") {
-        appendRelief("As of the prefecture’s third report, this municipality is ", "covered by the Disaster Relief Act", ". Check official information for contacts and application opening dates.");
-      } else if (snapshot.disaster_relief === "chiba_direct") {
-        appendRelief("The prefecture’s third report states that ", "Hokuriku City directly administers disaster relief", ".");
+        appendRelief("As of the prefectural announcement, this municipality is ", "covered by the Disaster Relief Act", ". Check official information for contacts and application opening dates.");
+      } else if (snapshot.disaster_relief === "none") {
+        appendRelief("As of the prefectural announcement, this municipality is ", "not listed as covered by the Disaster Relief Act", ". Check official information for available programs.");
       } else {
-        reliefText.textContent = "As of the prefecture’s third report, this municipality is not listed as covered by the Disaster Relief Act. Check official information for available programs.";
+        // We have not confirmed coverage. Saying "not covered" here would tell
+        // residents of a covered municipality the opposite of the truth.
+        reliefText.textContent = "Whether the Disaster Relief Act applies here has not been confirmed on this site yet. Check the municipality's official pages and the prefectural announcement.";
       }
       support.appendChild(reliefText);
       var municipalitySupport = document.getElementById("muni-support");
@@ -313,12 +319,19 @@
       countyNews.sort(function (a, b) { return a.occurred_at < b.occurred_at ? 1 : -1; });
       fillLog(document.getElementById("press-county"), countyNews, "No prefecture-wide reports have been collected yet.");
       var searchBox = document.getElementById("press-search");
+      // The search term stays "北陸豪雨" because that is what the news uses;
+      // the site's own disaster name returns almost nothing.
       var heavyRainQuery = encodeURIComponent(municipality.name + " 北陸豪雨");
       var damageQuery = encodeURIComponent(municipality.name + " 大雨 被害");
       var yahooTemplate = (press.search && press.search.yahoo) || "https://news.search.yahoo.co.jp/search?ei=UTF-8&p={q}";
       searchBox.appendChild(searchLink(yahooTemplate.replace("{q}", heavyRainQuery), "Search Yahoo! Japan News for this municipality and the Hokuriku heavy rain"));
       searchBox.appendChild(searchLink(yahooTemplate.replace("{q}", damageQuery), "Search Yahoo! Japan News for damage in this municipality"));
-      searchBox.appendChild(searchLink((press.search && press.search.nhk_local) || "https://news.web.nhk/newsweb/area/120", "NHK Hokuriku News (Japanese)"));
+      var region = (config.regions || []).filter(function (r) { return r.slug === "pref-" + municipality.pref; })[0];
+      if (region && region.nhk_area) {
+        searchBox.appendChild(searchLink("https://news.web.nhk/newsweb/area/" + region.nhk_area, "NHK news for " + region.name_en + " (Japanese)"));
+      } else if (press.search && press.search.nhk_local) {
+        searchBox.appendChild(searchLink(press.search.nhk_local, "NHK regional news (Japanese)"));
+      }
       var logs = collection.items.filter(function (item) {
         return item.slug === slug && item.source_type !== "news";
       });

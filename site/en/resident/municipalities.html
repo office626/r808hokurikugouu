@@ -108,7 +108,7 @@
             link.appendChild(document.createTextNode(" "));
             link.appendChild(shelter);
           }
-          if (snapshot.disaster_relief === "applied" || snapshot.disaster_relief === "chiba_direct") {
+          if (snapshot.disaster_relief === "applied") {
             var relief = document.createElement("span");
             relief.className = "badge admin";
             relief.textContent = "Relief Act";

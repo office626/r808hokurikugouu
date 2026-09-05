@@ -364,7 +364,7 @@ def build_all() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     s = Sheet(
-        "August 2026 Hokuriku Heavy Rain Recovery Support Portal",
+        "August 2026 Ishikawa, Toyama & Fukui Heavy Rain Portal",
         "Start Here",
         "A page that helps affected residents reach official information, starting from their municipality and their situation.",
         "anime-guide-map.jpg",
@@ -448,9 +448,9 @@ def build_all() -> None:
     s.note("A road that was passable may later be restricted. Follow directions at the scene.")
     s.h2("Where to check")
     s.grid([
-        ("Trains & Buses", "Official service information from JR East, Keisei, Tobu, the monorail and each bus operator."),
-        ("Cars & Roads", "Passable-road maps, JARTIC, NEXCO East, prefectural road information and prefectural police."),
-        ("Electricity, Water & Gas", "TEPCO Power Grid outage information; the prefectural water bureau; Tokyo Gas, Keiyo Gas, Otaki Gas; and municipal water services."),
+        ("Trains & Buses", "Official service information from JR West, IR Ishikawa, Noto, Ainokaze, Toyama Chiho, Hapi-Line, Echizen and Fukui railways, and each bus operator."),
+        ("Cars & Roads", "Passable-road maps, JARTIC, NEXCO Central, prefectural road information and prefectural police."),
+        ("Electricity, Water & Gas", "Hokuriku Electric Power T&D outage information; Kanazawa Energy, Nihonkai Gas and Fukui City Gas; and municipal water services."),
         ("Medical Care & Pharmacies", "Prefectural emergency medical networks. We do not create an independent open/closed list."),
         ("Supermarkets & Convenience Stores", "Company store locators and notices are primary sources. We do not post social-media hearsay."),
         ("Municipal Information", "If announced, municipalities post water, waste, shelter and infant-formula distribution information."),
@@ -471,7 +471,7 @@ def build_all() -> None:
         "Safety and photos: Beware of electrical leakage and gas. Photograph buildings, equipment and inventory.",
         "Insurance and municipality: Business property often uses a non-residential damage certificate. Do not sign a contract first.",
         "Restaurants—contact the public health center: Reopening a flooded kitchen requires cleaning, disinfection and decisions on discarding food.",
-        "Consultation desks: Kanto METI, Japan Finance Corporation, the Credit Guarantee Association, chambers and societies of commerce, and Yorozu Support Centers.",
+        "Consultation desks: Chubu METI (Toyama, Ishikawa), Kansai METI (Fukui), Japan Finance Corporation, the Credit Guarantee Association, chambers and societies of commerce, and Yorozu Support Centers.",
     ])
     s.h2("Possible later support (only after official designation or calls)")
     s.grid([
@@ -531,9 +531,9 @@ def build_all() -> None:
     s.note("The Disaster Relief Act mainly covers emergency housing and daily life. Business recovery often uses separate programs.")
     s.h2("Official sources to open first")
     s.grid([
-        ("Ishikawa, Toyama and Fukui", "Disaster Prevention Portal; response to heavy rain from August 26, 2026; Relief Act announcements; and damage-information PDFs."),
+        ("Ishikawa, Toyama and Fukui", "Disaster Prevention Portal; response to heavy rain from 27 August 2026; Relief Act announcements; and damage-information PDFs."),
         ("National Government", "Cabinet Office victim support, FDMA disaster information, JMA warnings, and river-disaster information."),
-        ("For Businesses", "Kanto METI special consultation, the Small and Medium Enterprise Agency, and prefectural SME loan programs."),
+        ("For Businesses", "Chubu and Kansai METI special consultation, the Small and Medium Enterprise Agency, and prefectural SME loan programs."),
         ("This Site's Log", "A chronological record of prefectural and national headlines. History is preserved rather than overwritten."),
     ])
     s.para("For local application guidance, use “Search by Municipality.” For procedures, see the housing or business page.")
