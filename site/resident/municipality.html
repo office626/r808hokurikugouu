@@ -139,13 +139,19 @@
       }
       items.forEach(function (it) { ul.appendChild(renderItem(it)); });
     }
-    function reliefLink(href) {
+    function reliefLine(p, prefix, emphasis, suffix, href) {
+      p.appendChild(document.createTextNode(prefix));
+      var strong = document.createElement("strong");
+      strong.textContent = emphasis;
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(suffix + " "));
+      if (!href) return;
       var a = document.createElement("a");
       a.href = href;
       a.target = "_blank";
       a.rel = "noopener";
       a.textContent = "県の発表";
-      return a;
+      p.appendChild(a);
     }
     function searchLink(href, label) {
       var a = document.createElement("a");
@@ -251,12 +257,12 @@
       var sup = document.getElementById("support");
       var sp = document.createElement("p");
       var relief = (col.links || {}).relief;
+      // 値は build_collection.py が書く applied / none の2つ。
+      // 収集が動いていないと snapshots 自体が空になり、どちらでもない状態になる。
       if (snap.disaster_relief === "applied") {
-        sp.textContent = "県の発表時点で災害救助法の適用市町です。窓口・受付開始は公式で確認してください。 ";
-        if (relief) sp.appendChild(reliefLink(relief));
-      } else if (snap.disaster_relief === "not_applied") {
-        sp.textContent = "県の発表時点では災害救助法の適用市町に含まれていません。制度の有無は公式で確認してください。 ";
-        if (relief) sp.appendChild(reliefLink(relief));
+        reliefLine(sp, "県の発表時点で", "災害救助法の適用市町", "です。窓口・受付開始は公式で確認してください。", relief);
+      } else if (snap.disaster_relief === "none") {
+        reliefLine(sp, "県の発表時点では", "災害救助法の適用市町に含まれていません", "。制度の有無は公式で確認してください。", relief);
       } else {
         // 適用の有無をこのサイトで確かめられていない状態。
         // ここで「含まれていません」と書くと、適用市町の住民が非該当と読んでしまう。
@@ -310,10 +316,10 @@
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo), "Yahoo!ニュースで「" + m.name + " 北陸豪雨」"));
       box.appendChild(searchLink(yahooTpl.replace("{q}", qYahoo2), "Yahoo!ニュースで「" + m.name + " 大雨 被害」"));
       var region = (cfg.regions || []).filter(function (r) { return r.slug === "pref-" + m.pref; })[0];
-      if (press.search && press.search.nhk_local) {
-        box.appendChild(searchLink(press.search.nhk_local, "NHKニュース"));
-      } else if (region && region.nhk_area) {
+      if (region && region.nhk_area) {
         box.appendChild(searchLink("https://news.web.nhk/newsweb/area/" + region.nhk_area, "NHKニュース（" + region.name + "）"));
+      } else if (press.search && press.search.nhk_local) {
+        box.appendChild(searchLink(press.search.nhk_local, "NHKニュース"));
       }
       var logs = col.items.filter(function (it) {
         return it.slug === slug && it.source_type !== "news";

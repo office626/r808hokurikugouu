@@ -260,8 +260,10 @@
         strong.textContent = emphasis;
         reliefText.appendChild(strong);
         reliefText.appendChild(document.createTextNode(suffix + " "));
+        var href = (collection.links || {}).relief;
+        if (!href) return;
         var announcement = document.createElement("a");
-        announcement.href = collection.links.relief;
+        announcement.href = href;
         announcement.target = "_blank";
         announcement.rel = "noopener";
         announcement.textContent = "Prefectural announcement (Japanese)";
@@ -269,7 +271,7 @@
       }
       if (snapshot.disaster_relief === "applied") {
         appendRelief("As of the prefectural announcement, this municipality is ", "covered by the Disaster Relief Act", ". Check official information for contacts and application opening dates.");
-      } else if (snapshot.disaster_relief === "not_applied") {
+      } else if (snapshot.disaster_relief === "none") {
         appendRelief("As of the prefectural announcement, this municipality is ", "not listed as covered by the Disaster Relief Act", ". Check official information for available programs.");
       } else {
         // We have not confirmed coverage. Saying "not covered" here would tell
@@ -325,10 +327,10 @@
       searchBox.appendChild(searchLink(yahooTemplate.replace("{q}", heavyRainQuery), "Search Yahoo! Japan News for this municipality and the Hokuriku heavy rain"));
       searchBox.appendChild(searchLink(yahooTemplate.replace("{q}", damageQuery), "Search Yahoo! Japan News for damage in this municipality"));
       var region = (config.regions || []).filter(function (r) { return r.slug === "pref-" + municipality.pref; })[0];
-      if (press.search && press.search.nhk_local) {
-        searchBox.appendChild(searchLink(press.search.nhk_local, "NHK regional news (Japanese)"));
-      } else if (region && region.nhk_area) {
+      if (region && region.nhk_area) {
         searchBox.appendChild(searchLink("https://news.web.nhk/newsweb/area/" + region.nhk_area, "NHK news for " + region.name_en + " (Japanese)"));
+      } else if (press.search && press.search.nhk_local) {
+        searchBox.appendChild(searchLink(press.search.nhk_local, "NHK regional news (Japanese)"));
       }
       var logs = collection.items.filter(function (item) {
         return item.slug === slug && item.source_type !== "news";
