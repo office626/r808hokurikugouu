@@ -2,7 +2,12 @@
 
 CivicTechZenChiba（CTZC）として、令和8年8月石川・富山・福井豪雨の復興・災害対策のために検討しているポータルサイトの**要件定義**と、GitHub Pages 上の簡易公開サイトです。
 
-**公開サイト:** https://office626.github.io/r808hokurikugouu/
+> **このリポジトリは移転しました（2026-10-25）。** 開発と運用は CTZC の organization に移っています。
+> 新しいリポジトリ: https://github.com/civictechzenchiba/hokurikugouu
+> 新しい公開サイト: https://civictechzenchiba.github.io/hokurikugouu/
+> ここに残っているのは移転前の履歴と、旧 URL から新サイトへ転送するページだけです。
+
+**公開サイト:** https://civictechzenchiba.github.io/hokurikugouu/ （旧 URL https://office626.github.io/r808hokurikugouu/ は新サイトへ転送）
 
 検証・添削・協働編集を歓迎します。Issue や Pull Request で指摘してください。
 
